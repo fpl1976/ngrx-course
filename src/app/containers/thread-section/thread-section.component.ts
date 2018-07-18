@@ -3,9 +3,8 @@ import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import { LoadUserThreads } from '../store/actions/user-threads.actions';
 import { AllUserData } from 'shared/aggregates/all-user-data';
-import { ApplicationState } from '../store/reducers';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-thread-section',
@@ -17,12 +16,13 @@ export class ThreadSectionComponent implements OnInit {
   public threads$: Observable<AllUserData>;
 
   constructor(
-    private store: Store<ApplicationState>) { }
+    private store: Store<fromStore.ApplicationState>) { }
 
   ngOnInit() {
     // Create selector for user threads and assign to thread$ observable
+    // this.threads$ = this.store.select();
     // Dispatch load user threads
-    this.store.dispatch(new LoadUserThreads());
+    this.store.dispatch(new fromStore.LoadUserThreads());
   }
 
 }

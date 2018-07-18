@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import * as fromComponents from './components';
-import { ThreadsService } from './services/threads.service';
+import * as fromProviders from './providers';
 
 import { environment } from '../environments/environment';
 /* Not used in production */
@@ -35,7 +35,9 @@ import { reducers, effects } from './store';
     EffectsModule.forRoot(effects),
     environment.development ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [ThreadsService],
+  providers: [
+    ...fromProviders.providers
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
